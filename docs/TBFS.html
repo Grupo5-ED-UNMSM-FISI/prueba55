@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+		<title>
+			ED-Grupo 5 
+		</title>
+		
+		<!-- css sheet for how the page is laid out -->
+		
+		<link rel="stylesheet" href="visualizationPageStyle.css">
+			
+			
+		<!-- jqueury stuff.  Only used for the animation speed slider. -->
+		<link rel="stylesheet" href="ThirdParty/jquery-ui-1.8.11.custom.css">
+				
+		<script src="ThirdParty/jquery-1.5.2.min.js"></script>
+		<script src="ThirdParty/jquery-ui-1.8.11.custom.min.js"></script>
+				
+		<!-- Javascript for the actual visualization code -->
+		<script type = "text/javascript" src = "AnimationLibrary/CustomEvents.js"> </script>
+		<script type = "text/javascript" src = "AnimationLibrary/UndoFunctions.js"> </script>
+		<script type = "text/javascript" src = "AnimationLibrary/AnimatedObject.js"> </script>
+		<script type = "text/javascript" src = "AnimationLibrary/AnimatedLabel.js"> </script>
+		<script type = "text/javascript" src = "AnimationLibrary/AnimatedCircle.js"> </script>
+		<script type = "text/javascript" src = "AnimationLibrary/AnimatedRectangle.js"> </script>
+		<script type = "text/javascript" src = "AnimationLibrary/AnimatedLinkedList.js"> </script>
+		<script type = "text/javascript" src = "AnimationLibrary/HighlightCircle.js"> </script>
+		<script type = "text/javascript" src = "AnimationLibrary/Line.js"> </script>
+		<script type = "text/javascript" src = "AnimationLibrary/ObjectManager.js"> </script>
+		<script type = "text/javascript" src = "AnimationLibrary/AnimationMain.js"> </script>
+		
+		<script type = "text/javascript" src = "AlgorithmLibrary/Algorithm.js"> </script>
+		<script type = "text/javascript" src = "AlgorithmLibrary/Graph.js"> </script>
+		<script type = "text/javascript" src = "AlgorithmLibrary/BFS.js"> </script> 
+		
+		
+
+
+		<style>
+			html{
+				box-sizing: border-box;
+				font-size: 62.5%; /*Reser para Rems - 62.5 = 10pxde 16 px ++*/
+			}
+			*, *::before, *:after{
+			   box-sizing: inherit;
+			}
+
+			.imaGraf{
+				margin-left:-30rem;
+				margin-top: -32rem;
+				text-align: left;
+			}
+			
+			.imag{
+				margin-top: -7rem;
+				text-align: right;
+			}
+
+			.imagen{
+				margin-right:8rem;
+				margin-top: -6rem;
+				text-align: right;
+			}
+
+			.imagBFS{
+				margin-right:10rem;
+				margin-top: 6rem;
+				text-align: right;
+			}
+			.imagenUnmsm{
+				height: 5%;
+				width: 5%;
+			}
+			.imagenFISI{
+				height: 5%;
+				width: 5%;
+			}
+
+			.imagenBFS{
+				height: 5%;
+				width: 30%;
+			}
+
+
+	
+			h1{
+				text-align: left;
+				text-decoration: none;
+				text-transform: uppercase;
+				font-size: 4rem;
+				color: white;
+				text-shadow: 0.3rem 0.3rem black;
+				font-weight: bold;
+			}
+		
+			a{
+				text-align: left;
+				text-decoration: none;
+				text-transform: uppercase;
+				font-size: 2rem;
+				color:white;
+				
+				font-weight: bold;
+			}
+			b{
+				text-align: left;
+				text-decoration: none;
+				text-transform: uppercase;
+				font-size: 2rem;
+				color:white;
+				text-shadow: 0.3rem 0.3rem black;
+
+				font-weight: bold;
+			}
+			.link{
+            text-transform: capitalize;
+            font-size: 2rem;
+            font-weight: bold;
+            color:black; 
+        }
+		</style>
+
+
+	 </head> 
+	
+	<body onload="init();" class="VisualizationMainPage" >
+		
+		<div id = "container" >
+			
+			<div id="header" style="background-color:rgb(114, 142, 231)" >  
+				
+				<h1 style="background-color:rgb(114, 142, 231)">Breadth First Search </h1>
+				<div class="row">
+					<div class="col-1">
+						<button type="button" class="btn btn-dark">
+							<a href="index.html" class="link">Atras</a>
+						</button>
+					</div>
+					<div class="col-8 imagen">
+						<img src="images/SanMarcoslogo.png" alt="Imagen de SanMarcos" class="imagenUnmsm">
+					</div>
+					<div class="col-8 imag">
+						<img src="images/Fisilogo.png" alt="Imagen de la fisi" class="imagenFISI">
+					</div>
+				</div>
+               
+					
+					</div>
+
+					 <div = id = "mainContent" style="background-color:rgb(114, 142, 231)"> 
+			
+				
+				<div id = "algoControlSection" style="background-color:rgba(255, 255, 0, 0.993)">
+					<!-- Table for buttons to control specific animation (insert/find/etc) -->
+					<!-- (filled in by javascript code specific to the animtion) -->
+					<table id="AlgorithmSpecificControls" style="background-color:rgba(255, 255, 0, 0.993)"> </table> 
+				</div>
+
+
+				<div class="row">
+					<div class="col-8 imagBFS">
+						<img src="images/pseudobfs.jpg" alt="Imagen de BFS" class="imagenBFS">
+					</div>
+		
+					<!-- Drawing canvas where all animation is done.  Note:  can be resized in code -->
+									
+				<canvas id="canvas" width="1000" height="500" class="imaGraf" ></canvas>
+				
+				<div id = "generalAnimationControlSection">
+					<!-- Table for buttons to control general animation (play/pause/undo/etc) ->
+					<!-- (filled in by javascript code, specifically AnimationMain.js)  -->
+
+					<table id="GeneralAnimationControls">  </table>		
+				</div>
+				
+			</div> <!-- mainContent -->
+
+
+			<div style="background-color:rgb(114, 142, 231)" id="footer">  
+				<p ><b > © Estructura de Datos- GRUPO 5</b></p>
+			</div>
+
+			
+
+        </div><!-- container -->
+       
+
